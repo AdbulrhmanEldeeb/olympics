@@ -6,9 +6,24 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
+import requests  
+
+# df = pd.read_csv('athlete_events.csv')
+
+@st.cache
+def load_data(url):
+    response = requests.get(url)
+    with open("athlete_events.csv", "wb") as file:
+        file.write(response.content)
+    return pd.read_csv("athlete_events.csv")
+
+# URL to the CSV file in the GitHub release
+url = "https://github.com/AdbulrhmanEldeeb/olympics/releases/download/data_file/athlete_events.csv"
+
+# Load the data
+df = load_data(url)
 
 
-df = pd.read_csv('athlete_events.csv')
 region_df = pd.read_csv('noc_regions.csv')
 
 df = preprocessor.preprocess(df,region_df)
