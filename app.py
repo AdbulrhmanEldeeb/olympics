@@ -230,9 +230,9 @@ if user_menu == 'Athlete wise Analysis':
     fig.update_layout(
         
         xaxis_title='Year',
-        yaxis_title='Number of Medals',
+        yaxis_title='Count',
         legend_title='Gender'
 )
-    st.title('Number of Medals Won by Men and Women Over the Years')
+    st.title('Men Vs Women Participation Over the Years')
     st.plotly_chart(fig)
 
